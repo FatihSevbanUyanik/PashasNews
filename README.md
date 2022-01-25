@@ -4,9 +4,9 @@ An application that retrieves images from a News api. Includes MVVM architecture
 
 APK: [Link](https://drive.google.com/file/d/10znirknpsHmvK3n8NJAxHbFlX0S-8YBv/view?usp=sharing)
 
-<img src="DocsImages/1.jpg" width="350">
-<img src="DocsImages/2.jpg" width="350">
-<img src="DocsImages/3.jpg" width="350">
-<img src="DocsImages/4.jpg" width="350">
-<img src="DocsImages/5.jpg" width="350">
-<img src="DocsImages/6.jpg" width="350">
+<img src="DocsImage/1.jpg" width="350">
+<img src="DocsImage/2.jpg" width="350">
+<img src="DocsImage/3.jpg" width="350">
+<img src="DocsImage/4.jpg" width="350">
+<img src="DocsImage/5.jpg" width="350">
+<img src="DocsImage/6.jpg" width="350">
