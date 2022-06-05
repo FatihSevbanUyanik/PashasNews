@@ -2,31 +2,25 @@ package com.example.pashanews.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pashanews.R
 import com.example.pashanews.data.db.model.ArticleDB
 import com.example.pashanews.databinding.FragmentFavouriteNewsBinding
-import com.example.pashanews.databinding.FragmentHeadLinesBinding
-import com.example.pashanews.ui.adapter.FavoriteNewsAdapter
-import com.example.pashanews.ui.adapter.HeadlinesAdapter
-import com.example.pashanews.ui.viewmodel.NewsViewModel
-import com.example.pashanews.util.DataState
-import com.example.pashasnews.model.Article
-import com.example.pashasnews.model.NewsSource
+import com.example.pashanews.ui.adapter.NewsDBAdapter
+import com.example.pashanews.data.api.model.news.Article
+import com.example.pashanews.data.api.model.news.Source
+import com.example.pashanews.ui.viewmodel.FavoriteNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavouriteNewsFragment : Fragment(R.layout.fragment_favourite_news), FavoriteNewsAdapter.Listener {
+class FavoriteNewsFragment : Fragment(R.layout.fragment_favourite_news), NewsDBAdapter.Listener {
 
-    private val viewModel: NewsViewModel by viewModels()
-    private lateinit var favoriteNewsAdapter: FavoriteNewsAdapter
+    private val viewModel: FavoriteNewsViewModel by viewModels()
+    private lateinit var favoriteNewsAdapter: NewsDBAdapter
     private lateinit var viewBinding: FragmentFavouriteNewsBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,20 +33,20 @@ class FavouriteNewsFragment : Fragment(R.layout.fragment_favourite_news), Favori
 
     private fun subscribeObservers() {
         viewModel.apply {
-            areFavoriteNewsLoading.observe(viewLifecycleOwner, {
+            areFavoriteNewsLoading.observe(viewLifecycleOwner) {
                 val count = viewModel.favoriteArticles.value?.size ?: 0
                 isLoading(it, count)
-            })
+            }
 
-            toast.observe(viewLifecycleOwner, {
+            toast.observe(viewLifecycleOwner) {
                 if (it.isNullOrEmpty()) return@observe
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-            });
+            };
 
-            favoriteArticles.observe(viewLifecycleOwner, {
+            favoriteArticles.observe(viewLifecycleOwner) {
                 favoriteNewsAdapter.differ.submitList(it)
                 viewModel.areFavoriteNewsLoading.value?.let { loading -> isLoading(loading, it.size) }
-            })
+            }
         }
     }
 
@@ -66,7 +60,7 @@ class FavouriteNewsFragment : Fragment(R.layout.fragment_favourite_news), Favori
     }
 
     private fun initUI() {
-        favoriteNewsAdapter = FavoriteNewsAdapter(this)
+        favoriteNewsAdapter = NewsDBAdapter(this)
         viewBinding.rcvFavouriteNews.apply {
             adapter = favoriteNewsAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -79,7 +73,7 @@ class FavouriteNewsFragment : Fragment(R.layout.fragment_favourite_news), Favori
             "",
             article.description,
             article.publishedAt,
-            NewsSource(article.url, ""),
+            Source(article.url, ""),
             article.title,
             article.url,
             article.urlToImage

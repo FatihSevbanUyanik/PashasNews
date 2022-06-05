@@ -2,40 +2,33 @@ package com.example.pashanews.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pashanews.R
-import com.example.pashanews.data.db.model.ArticleDB
-import com.example.pashanews.databinding.FragmentNewsBinding
-import com.example.pashanews.ui.activity.MainActivity
 import com.example.pashanews.ui.adapter.NewsAdapter
-import com.example.pashanews.ui.viewmodel.NewsViewModel
-import com.example.pashanews.util.DataState
-import com.example.pashasnews.model.Article
+import com.example.pashanews.ui.viewmodel.SearchNewsViewModel
+import com.example.pashanews.data.api.model.news.Article
+import com.example.pashanews.databinding.FragmentSearchNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class NewsFragment : Fragment(R.layout.fragment_news), NewsAdapter.Listener {
+class SearchNewsFragment : Fragment(R.layout.fragment_search_news), NewsAdapter.Listener {
 
-    private val viewModel: NewsViewModel by viewModels()
+    private val viewModel: SearchNewsViewModel by viewModels()
     private lateinit var adapterNews: NewsAdapter
-    private lateinit var viewBinding: FragmentNewsBinding
+    private lateinit var viewBinding: FragmentSearchNewsBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = FragmentNewsBinding.bind(view)
+        viewBinding = FragmentSearchNewsBinding.bind(view)
         initUI()
         subscribeObservers()
         subscribeListeners()

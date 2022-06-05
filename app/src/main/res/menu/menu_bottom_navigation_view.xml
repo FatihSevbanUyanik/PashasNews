@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/topHeadlinesFragment"
+        android:id="@+id/headLinesCategoryFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_text_snippet_24"
         android:title="Headlines"/>
+
+    <item
+        android:id="@+id/headLinesSourceFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Sources"/>
+
+    <!--
     <item
         android:id="@+id/newsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="News"/>
+    -->
+
+    <item
+        android:id="@+id/currencyFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_monetization_on_24"
+        android:title="Crypto"/>
 
     <item
         android:id="@+id/favouriteNewsFragment"

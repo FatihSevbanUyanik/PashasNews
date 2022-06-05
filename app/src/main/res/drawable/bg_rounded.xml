@@ -9,7 +9,7 @@
                 android:bottomRightRadius="2dp"
 
                 />
-            <gradient android:startColor="#070707" android:centerColor="#070707" android:endColor="#070707" />
+            <gradient android:startColor="@color/gray" android:centerColor="@color/gray" android:endColor="@color/gray" />
         </shape>
     </item>
 </selector>

@@ -1,11 +1,8 @@
 package com.example.pashanews.ui.fragment
 
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -14,19 +11,17 @@ import androidx.navigation.fragment.navArgs
 import com.example.pashanews.R
 import com.example.pashanews.data.db.model.ArticleDB
 import com.example.pashanews.databinding.FragmentArticleBinding
-import com.example.pashanews.databinding.FragmentHeadLinesBinding
-import com.example.pashanews.ui.viewmodel.NewsViewModel
-import com.example.pashasnews.model.Article
-import com.example.pashasnews.model.NewsSource
+import com.example.pashanews.data.api.model.news.Article
+import com.example.pashanews.ui.activity.MainActivity
+import com.example.pashanews.ui.viewmodel.ArticleViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 
 @AndroidEntryPoint
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     private lateinit var article: Article
     private lateinit var viewBinding: FragmentArticleBinding
-    private val viewModel: NewsViewModel by viewModels()
+    private val viewModel: ArticleViewModel by viewModels()
     private val args: ArticleFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,17 +55,29 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     }
 
     private fun subscribeObservers() {
-        viewModel.toast.observe(viewLifecycleOwner, {
+        viewModel.toast.observe(viewLifecycleOwner) {
             if (it.isNullOrEmpty()) return@observe
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-        });
+        };
 
-        viewModel.isArticleFavorite.observe(viewLifecycleOwner, {
+        viewModel.isArticleFavorite.observe(viewLifecycleOwner) {
             viewBinding.fabSaveNews.setImageDrawable(
-                ContextCompat.getDrawable(requireContext(),
+                ContextCompat.getDrawable(
+                    requireContext(),
                     if (it) R.drawable.ic_baseline_close_24 else R.drawable.ic_baseline_star_24
                 )
             )
-        })
+        }
     }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
+    }
+
 }

@@ -14,7 +14,7 @@ interface ArticleDao {
     @Delete
     suspend fun deleteArticle(article: ArticleDB)
 
-    @Query("SELECT * FROM ArticleDB")
+    @Query("SELECT * FROM ArticleDB ORDER BY createdAt DESC")
     suspend fun getArticles(): List<ArticleDB>
 
     @Query("SELECT COUNT(*) FROM ArticleDB where url=:articleURL")

@@ -1,5 +1,6 @@
 package com.example.pashanews.di
 
+import com.example.pashanews.data.api.service.CurrencyService
 import com.example.pashanews.data.api.service.NewsService
 import com.example.pashanews.util.Constants
 import dagger.Module
@@ -43,5 +44,12 @@ class ApiModule {
     fun provideNewsService(retrofit: Retrofit): NewsService {
         return retrofit.create(NewsService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideCurrencyService(retrofit: Retrofit): CurrencyService {
+        return retrofit.create(CurrencyService::class.java)
+    }
+
 
 }

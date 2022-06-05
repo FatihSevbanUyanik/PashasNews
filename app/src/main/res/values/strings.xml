@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Pasha\'s News</string>
+    <string-array name="news_categories">
+        <item>business</item>
+        <item>science</item>
+        <item>sports</item>
+        <item>technology</item>
+    </string-array>
+
+    <string-array name="news_categories_titles">
+        <item>Business</item>
+        <item>Science</item>
+        <item>Sports</item>
+        <item>Technology</item>
+    </string-array>
+
+    <string-array name="news_sources">
+        <item>bbc-news</item>
+        <item>bloomberg</item>
+        <item>fortune</item>
+        <item>the-wall-street-journal</item>
+    </string-array>
+
+    <string-array name="news_sources_titles">
+        <item>BBC News</item>\
+        <item>Bloomberg</item>
+        <item>Fortune</item>
+        <item>The Wall Street Journal</item>
+    </string-array>
 </resources>

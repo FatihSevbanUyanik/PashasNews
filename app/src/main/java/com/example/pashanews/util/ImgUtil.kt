@@ -27,6 +27,7 @@ class ImgUtil {
                 .load(url)
                 .placeholder(circularProgressDrawable)
                 .transition(DrawableTransitionOptions.withCrossFade(factory))
+                .timeout(30000)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
                         e: GlideException?,

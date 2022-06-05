@@ -3,28 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_news_fragment_grpah"
-    app:startDestination="@id/topHeadlinesFragment">
+    app:startDestination="@id/headLinesCategoryFragment">
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.pashanews.ui.fragment.NewsFragment"
+        android:name="com.example.pashanews.ui.fragment.SearchNewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" >
+        tools:layout="@layout/fragment_search_news" >
         <action
             android:id="@+id/action_newsFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/topHeadlinesFragment"
-        android:name="com.example.pashanews.ui.fragment.HeadLinesFragment"
-        android:label="fragment_head_news"
-        tools:layout="@layout/fragment_head_lines" >
-        <action
-            android:id="@+id/action_topHeadlinesFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/favouriteNewsFragment"
-        android:name="com.example.pashanews.ui.fragment.FavouriteNewsFragment"
+        android:name="com.example.pashanews.ui.fragment.FavoriteNewsFragment"
         android:label="fragment_favourite_news"
         tools:layout="@layout/fragment_favourite_news" >
         <action
@@ -35,9 +26,34 @@
         android:id="@+id/articleFragment"
         android:name="com.example.pashanews.ui.fragment.ArticleFragment"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" >
+        tools:layout="@layout/fragment_article">
         <argument
             android:name="article"
-            app:argType="com.example.pashasnews.model.Article" />
+            app:argType="com.example.pashanews.data.api.model.news.Article" />
+    </fragment>
+    <fragment
+        android:id="@+id/headLinesCategoryFragment"
+        android:name="com.example.pashanews.ui.fragment.HeadLinesCategoryFragment"
+        android:label="HeadLinesCategoryFragment" >
+        <action
+            android:id="@+id/action_headLinesCategoryFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/headLinesSourceFragment"
+        android:name="com.example.pashanews.ui.fragment.HeadLinesSourceFragment"
+        android:label="fragment_head_lines_source"
+        tools:layout="@layout/fragment_head_lines_source" >
+        <action
+            android:id="@+id/action_headLinesSourceFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:name="com.example.pashanews.ui.fragment.CurrencyFragment"
+        android:label="CurrencyFragment" >
+        <action
+            android:id="@+id/action_currencyFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>

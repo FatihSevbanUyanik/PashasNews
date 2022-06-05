@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pashanews.data.db.model.ArticleDB
 import com.example.pashanews.databinding.ListItemFavoriteNewsBinding
-import com.example.pashanews.databinding.ListItemNewsBinding
 import com.example.pashanews.util.ImgUtil
 
-class FavoriteNewsAdapter(private val listener: Listener) :
-    RecyclerView.Adapter<FavoriteNewsAdapter.FavouriteNewsViewHolder>() {
+class NewsDBAdapter(private val listener: Listener) :
+    RecyclerView.Adapter<NewsDBAdapter.FavouriteNewsViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<ArticleDB>() {
         override fun areItemsTheSame(oldItem: ArticleDB, newItem: ArticleDB): Boolean = oldItem.url == newItem.url
@@ -40,8 +39,8 @@ class FavoriteNewsAdapter(private val listener: Listener) :
             binding.apply {
                 tvHeader.text = article.title
                 tvDescription.text = article.description
-                tvDate.text = article.publishedAt.split("T")[0]
-                ImgUtil.loadImage(imgNews, article.urlToImage)
+                tvDate.text = article.publishedAt!!.split("T")[0]
+                ImgUtil.loadImage(imgNews, article.urlToImage, true)
 
                 root.setOnClickListener {
                     if (adapterPosition != RecyclerView.NO_POSITION) {
